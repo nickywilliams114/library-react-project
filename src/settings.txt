@@ -1,0 +1,4 @@
+root: C:\Users\sugar\library\src 
+path: C:\Program Files\nodejs 
+arch: 64 
+proxy: none
