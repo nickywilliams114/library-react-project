@@ -2,7 +2,7 @@ import React from "react";
 import Landing from "../components/Landing";
 import Highlights from "../components/Highlights";
 import Featured from "../components/Featured";
-import CheapestBooks from "../components/CheapestBooks";
+import DiscountedBooks from "../components/DiscountedBooks";
 import Explore from "../components/Explore";
 
 const Home = () => {
@@ -12,7 +12,7 @@ const Home = () => {
       <main>
         <Highlights />
         <Featured />
-        <CheapestBooks />
+        <DiscountedBooks />
         <Explore />
       </main>
     </>
