@@ -1,9 +1,9 @@
 import React from "react";
-import Landing from "./src/components/Landing";
-import Highlights from "./src/components/Highlights";
-import Featured from "./src/components/Featured";
-import CheapestBooks from "./src/components/CheapestBooks";
-import Explore from "./src/components/Explore";
+import Landing from "../components/Landing";
+import Highlights from "../components/Highlights";
+import Featured from "../components/Featured";
+import CheapestBooks from "../components/CheapestBooks";
+import Explore from "../components/Explore";
 
 const Home = () => {
   return (

@@ -2,7 +2,7 @@ import React from "react";
 import Book from "./Book";
 import { books } from "../data";
 
-const Features = () => {
+const DiscountedBooks = () => {
   return (
     <section id="recent">
       <div className="container">
@@ -25,4 +25,4 @@ const Features = () => {
   );
 };
 
-export default Features;
+export default DiscountedBooks;

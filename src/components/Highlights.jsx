@@ -2,6 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Highlight from "./ui/Highlight";
 
+
 const Highlights = () => {
   return (
     <section id="highlights">
@@ -32,5 +33,12 @@ const Highlights = () => {
     </section>
   );
 };
+                 
+              
+                
+              
+                
+            
+            
 
 export default Highlights;
