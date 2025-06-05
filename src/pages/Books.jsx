@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Book from "../components/Book";
 
+
 const Books = ({ books: initalBooks }) => {
   const [books, setBooks] = useState();
 
@@ -9,34 +10,33 @@ const Books = ({ books: initalBooks }) => {
   }, [initalBooks]);
 
   function filterBooks(filter) {
-    switch (filter) {
-      case "LOW_TO_HIGH":
-        return setBooks(
-          books
-            .slice()
-            .sort(
-              (a, b) =>
-                (a.salePrice || a.originalPrice) -
-                (b.salePrice || b.originalPrice)
-            )
-        );
-      case "HIGH_TO_LOW":
-        return setBooks(
-          books
-            .slice()
-            .sort(
-              (a, b) =>
-                (b.salePrice || b.originalPrice) -
-                (a.salePrice || a.originalPrice)
-            )
-        );
-      case "RATING":
-        return setBooks(books.slice().sort((a, b) => b.rating - a.rating));
-      default:
-        break;
+    console.log(filter); 
+    if (filter === "LOW_TO_HIGH") {
+      setBooks(
+        books
+          .slice()
+          .sort(
+            (a, b) =>
+              (a.salePrice ||a.originalPrice) -
+              (b.salePrice || b.originalPrice)
+          )
+      );
+    }
+    if (filter === "HIGH_TO_LOW") {
+      setBooks(
+        books
+          .slice()
+          .sort(
+            (a, b) =>
+              (b.salePrice ||b.originalPrice) -
+              (a.salePrice || a.originalPrice)
+          )
+      );
+    }
+    if (filter === "RATING") {
+      setBooks(books.slice().sort((a, b) => b.rating - a.rating));
     }
   }
-
   return (
     <div id="books__body">
       <main id="books__main">
@@ -74,3 +74,9 @@ const Books = ({ books: initalBooks }) => {
 };
 
 export default Books;
+         
+      
+        
+      
+  
+
