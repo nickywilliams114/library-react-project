@@ -26,25 +26,25 @@ const Cart = ({ cart, changeQuantity, removeItem }) => {
                 <span className="cart__total">Price</span>
               </div>
               <div className="cart__body">
-                {cart.map((item) => {
+                {cart.map((book) => {
                   return (
-                    <div className="cart__item" key={item.id}>
+                    <div className="cart__item">
                       <div className="cart__book">
                         <img
-                          src={item.url}
+                          src={book.url}
                           className="cart__book--img"
                           alt=""
                         />
-                        <div className="cart__book__info">
+                        <div className="cart__book--info">
                           <span className="cart__book--title">
-                            {item.title}
+                            {book.title}
                           </span>
                           <span className="cart__book--price">
-                            ${(item.salePrice || item.originalPrice).toFixed(2)}
+                            ${(book.salePrice || book.originalPrice).toFixed(2)}
                           </span>
                           <button
                             className="cart__book--remove"
-                            onClick={() => removeItem(item)}
+                            onClick={() => removeItem(book)}
                           >
                             Remove
                           </button>
@@ -53,18 +53,20 @@ const Cart = ({ cart, changeQuantity, removeItem }) => {
                       <div className="cart__quantity">
                         <input
                           type="number"
-                          class="cart__input"
                           min={0}
                           max={99}
-                          value={item.quantity}
+                          className="cart__input"
+                          value={book.quantity}
                           onChange={(event) =>
-                            changeQuantity(item, event.target.value)
+                            changeQuantity(book, event.target.value)
                           }
                         />
                       </div>
                       <div className="cart__total">
                         $
-                        {(item.salePrice || item.originalPrice) * item.quantity}
+                        {(
+                          (book.salePrice || book.originalPrice) * book.quantity
+                        ).toFixed(2)}
                       </div>
                     </div>
                   );
@@ -82,25 +84,19 @@ const Cart = ({ cart, changeQuantity, removeItem }) => {
             </div>
             {cart.length > 0 && (
               <div className="total">
-                {total &&
-                  total.subtotal &&
-                  total.tax &&
-                  total.total(
-                    <>
-                      <div className="total__item total__sub-total">
-                        <span>Subtotal</span>
-                        <span>${total.subtotal.toFixed(2)}</span>
-                      </div>
-                      <div className="total__item total__tax">
-                        <span>Tax</span>
-                        <span>${total.tax.toFixed(2)}</span>
-                      </div>
-                      <div className="total__item total__price">
-                        <span>Total</span>
-                        <span>${total.total.toFixed(2)}</span>
-                      </div>
-                    </>
-                  )}
+                <div className="total__item total__sub-total">
+                  <span>Subtotal</span>
+                  <span>${total().toFixed(2)}</span>
+                </div>
+                <div className="total__item total__tax">
+                  <span>Tax</span>
+                  <span>${(total() * 0.1).toFixed(2)}</span>
+                </div>
+                <div className="total__item total__price">
+                  <span>Total</span>
+                  <span>${(total() * 1.1).toFixed(2)}</span>
+                </div>
+
                 <button
                   className="btn btn__checkout"
                   onClick={() => alert(`Are you sure? `)}
