@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useParams } from "react-router-dom";
 import Ratings from "../components/ui/Ratings";
 import Price from "../components/ui/Price";
@@ -8,7 +8,6 @@ import Book from "../components/Book";
 const BookInfo = ({ books, addItemToCart, cart }) => {
   const { id } = useParams();
   const book = books.find((book) => +book.id === +id);
-  
 
   function addBookToCart(book) {
     addItemToCart(book);
