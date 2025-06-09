@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import EmptyCart from "../assets/empty_cart.svg";
 import { Link } from "react-router-dom";
 
-
-const Cart = ({ cart, updateCart, removeItem }) => {
-  const totals = () => {
+const Cart = ({ cart, changeQuantity, removeItem }) => {
+  const total = () => {
     let price = 0;
     cart.forEach((item) => {
       price += +((item.salePrice || item.originalPrice) * item.quantity);
@@ -31,7 +30,11 @@ const Cart = ({ cart, updateCart, removeItem }) => {
                   return (
                     <div className="cart__item" key={item.id}>
                       <div className="cart__book">
-                        <img src={item.url} className="cart__book--img" alt="" />
+                        <img
+                          src={item.url}
+                          className="cart__book--img"
+                          alt=""
+                        />
                         <div className="cart__book__info">
                           <span className="cart__book--title">
                             {item.title}
@@ -55,12 +58,13 @@ const Cart = ({ cart, updateCart, removeItem }) => {
                           max={99}
                           value={item.quantity}
                           onChange={(event) =>
-                            updateCart(item, event.target.value)
+                            changeQuantity(item, event.target.value)
                           }
                         />
                       </div>
                       <div className="cart__total">
-                        ${(item.salePrice || item.originalPrice) * item.quantity}
+                        $
+                        {(item.salePrice || item.originalPrice) * item.quantity}
                       </div>
                     </div>
                   );
@@ -78,21 +82,28 @@ const Cart = ({ cart, updateCart, removeItem }) => {
             </div>
             {cart.length > 0 && (
               <div className="total">
-                <div className="total__item total__sub-total">
-                  <span>Subtotal</span>
-                  <span>${totals.subtotal.toFixed(2)}</span>
-                </div>
-                <div className="total__item total__tax">
-                  <span>Tax</span>
-                  <span>${totals.tax.toFixed(2)}</span>
-                </div>
-                <div className="total__item total__price">
-                  <span>Total</span>
-                  <span>${totals.total.toFixed(2)}</span>
-                </div>
+                {total &&
+                  total.subtotal &&
+                  total.tax &&
+                  total.total(
+                    <>
+                      <div className="total__item total__sub-total">
+                        <span>Subtotal</span>
+                        <span>${total.subtotal.toFixed(2)}</span>
+                      </div>
+                      <div className="total__item total__tax">
+                        <span>Tax</span>
+                        <span>${total.tax.toFixed(2)}</span>
+                      </div>
+                      <div className="total__item total__price">
+                        <span>Total</span>
+                        <span>${total.total.toFixed(2)}</span>
+                      </div>
+                    </>
+                  )}
                 <button
-                  className="btn btn__checkout no-cursor"
-                  onClick={() => alert(`Are you sure? :(`)}
+                  className="btn btn__checkout"
+                  onClick={() => alert(`Are you sure? `)}
                 >
                   Proceed to checkout
                 </button>

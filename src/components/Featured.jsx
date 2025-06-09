@@ -1,7 +1,7 @@
 import React from "react";
 import Book from "./Book";  
 import { books } from "../data";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 const Featured = () => {
   return (

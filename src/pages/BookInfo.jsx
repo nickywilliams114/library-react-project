@@ -8,7 +8,7 @@ import Book from "../components/Book";
 const BookInfo = ({ books, addItemToCart, cart }) => {
   const { id } = useParams();
   const book = books.find((book) => +book.id === +id);
-  const [added, setAdded] = useState(false);
+  
 
   function addBookToCart(book) {
     addItemToCart(book);
